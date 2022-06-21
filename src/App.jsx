@@ -34,7 +34,7 @@ function App() {
         />
       </section>
       <button onClick={getMealData}> Get Daily Meal Plan </button>
-      {mealData && <MealList mealList={mealData} />}
+      {mealData && <MealList mealData={mealData} />}
     </div>
   );
 }
