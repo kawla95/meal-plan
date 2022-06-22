@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Meal({ meal }) {
   const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    fetch(
+      `https://api.spoonacular.com/recipes/${meal.id}/information?apiKey=536f69c972de4cd7848b9ab747315fb3&includeNutrition=false`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setImageUrl(data.image);
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }, [meal.id]);
   return (
     <article>
       <h1> {meal.title}</h1>
